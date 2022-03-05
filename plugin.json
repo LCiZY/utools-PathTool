@@ -1,0 +1,33 @@
+{
+    "version": "1.0.0",
+    "pluginName": "WSL路径转换",
+    "description": "WSL与Windows路径转换工具",
+	"logo": "logo.png",
+    "preload": "preload.js",
+	"features": [
+		{
+		  "code": "winpath2wslpath",
+		  "explain": "Windows路径 → WSL路径",
+			"cmds":[ {
+                "type": "over",
+                "label": "转换至WSL路径",
+                "exclude": "/mnt/"
+            }, {
+                "type": "files",
+                "label": "转换至WSL路径",
+                "fileType": "file",
+                "minLength": 1,
+                "maxLength": 1
+            }]
+		},
+		{
+		  "code": "wslpath2winpath",
+		  "explain": "WSL路径 → Windows路径",
+			"cmds":[ {
+                "type": "over",
+                "label": "转换至Windows路径",
+                "exclude": "[A-Z]:.+"
+            } ]
+		}
+	]
+}
