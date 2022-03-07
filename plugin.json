@@ -1,33 +1,121 @@
 {
-    "version": "1.0.0",
-    "pluginName": "WSL路径转换",
-    "description": "WSL与Windows路径转换工具",
-	"logo": "logo.png",
-    "preload": "preload.js",
-	"features": [
-		{
-		  "code": "winpath2wslpath",
-		  "explain": "Windows路径 → WSL路径",
-			"cmds":[ {
-                "type": "over",
-                "label": "转换至WSL路径",
-                "exclude": "/mnt/"
-            }, {
-                "type": "files",
-                "label": "转换至WSL路径",
-                "fileType": "file",
-                "minLength": 1,
-                "maxLength": 1
-            }]
-		},
-		{
-		  "code": "wslpath2winpath",
-		  "explain": "WSL路径 → Windows路径",
-			"cmds":[ {
-                "type": "over",
-                "label": "转换至Windows路径",
-                "exclude": "[A-Z]:.+"
-            } ]
-		}
-	]
+  "version": "1.0.0",
+  "pluginName": "路径转换",
+  "description": "复制文件(夹)路径、名称、斜杠替换、WSL与Windows路径相互转换",
+  "logo": "logo.png",
+  "preload": "preload.js",
+  "features": [
+    {
+      "code": "winpath2wslpath",
+      "explain": "Windows路径 → WSL路径",
+      "cmds": [
+        {
+          "type": "regex",
+          "label": "转换至WSL路径",
+          "match": "/[A-Z]:.+/"
+        },
+        {
+          "type": "files",
+          "label": "转换至WSL路径",
+          "fileType": "file",
+          "minLength": 1,
+          "maxLength": 1
+        },
+        {
+          "type": "files",
+          "label": "转换至WSL路径",
+          "fileType": "directory",
+          "minLength": 1,
+          "maxLength": 1
+        }
+      ]
+    },
+    {
+      "code": "wslpath2winpath",
+      "explain": "WSL路径 → Windows路径",
+      "cmds": [
+        {
+          "type": "regex",
+          "label": "转换至Windows路径",
+          "match": "/\/mnt\/.+/"
+        }
+      ]
+    },
+    {
+      "code": "filepath",
+      "explain": "复制路径",
+      "cmds": [
+        {
+          "type": "files",
+          "label": "复制文件路径",
+          "fileType": "file",
+          "minLength": 1,
+          "maxLength": 1
+        },
+        {
+          "type": "files",
+          "label": "复制文件夹路径",
+          "fileType": "directory",
+          "minLength": 1,
+          "maxLength": 1
+        }
+      ]
+    },
+    {
+      "code": "filename",
+      "explain": "复制文件(夹)名称",
+      "cmds": [
+        {
+          "type": "files",
+          "label": "复制文件名称",
+          "fileType": "file",
+          "minLength": 1,
+          "maxLength": 1
+        },
+        {
+          "type": "files",
+          "label": "复制文件夹名称",
+          "fileType": "directory",
+          "minLength": 1,
+          "maxLength": 1
+        }
+      ]
+    },
+    {
+      "code": "filename_with_suffix",
+      "explain": "复制完整文件名称",
+      "cmds": [
+        {
+          "type": "files",
+          "label": "复制文件名称(带后缀)",
+          "fileType": "file",
+          "match": "/.+\\.[^\\\/]+/",
+          "minLength": 1,
+          "maxLength": 1
+        }
+      ]
+    },
+    {
+      "code": "forward_slash_2_back",
+      "explain": "/ → \\",
+      "cmds": [
+        {
+          "type": "regex",
+          "label": "把正斜杠替换成反斜杠",
+          "match": "/.+\\/.+/"
+        }
+      ]
+    },
+    {
+      "code": "back_slash_2_forward",
+      "explain": "\\ → /",
+      "cmds": [
+        {
+          "type": "regex",
+          "label": "把反斜杠替换成正斜杠",
+          "match": "/.*(\\\\).*/"
+        }
+      ]
+    }
+  ]
 }
