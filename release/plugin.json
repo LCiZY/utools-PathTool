@@ -116,6 +116,28 @@
           "match": "/.*(\\\\).*/"
         }
       ]
+    },
+    {
+      "code": "double_back_slash",
+      "explain": "\\ → \\\\",
+      "cmds": [
+        {
+          "type": "regex",
+          "label": "把反斜杠替换成双反斜杠",
+          "match": "/.*(\\\\).*/"
+        }
+      ]
+    },
+    {
+      "code": "deduplicate_back_slash",
+      "explain": "\\\\ → \\",
+      "cmds": [
+        {
+          "type": "regex",
+          "label": "把双反斜杠替换成反斜杠",
+          "match": "/.*(\\\\\\\\).*/"
+        }
+      ]
     }
   ]
 }

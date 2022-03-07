@@ -122,5 +122,35 @@ window.exports = {
             window.utools.outPlugin()
          }
       }
+   },
+   "double_back_slash": {
+      mode: "none",
+      args: {
+         enter: (action) => {
+            var path = ""
+            if (action.type == "regex") {
+               path = action.payload
+            }
+            path = path.replace(/\\/g, "\\\\")
+            utools.copyText(path)
+            window.utools.hideMainWindow()
+            window.utools.outPlugin()
+         }
+      }
+   },
+   "deduplicate_back_slash": {
+      mode: "none",
+      args: {
+         enter: (action) => {
+            var path = ""
+            if (action.type == "regex") {
+               path = action.payload
+            }
+            path = path.replace(/\\\\/g, "\\")
+            utools.copyText(path)
+            window.utools.hideMainWindow()
+            window.utools.outPlugin()
+         }
+      }
    }
 }
